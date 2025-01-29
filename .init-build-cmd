@@ -1,0 +1,1 @@
+{"command": "npm install && npm run build", "working_directory": "/home/kavia/workspace/Authentication-Frontend-L.0.2/auth-frontend"}
