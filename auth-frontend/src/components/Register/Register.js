@@ -137,15 +137,12 @@ const Register = () => {
       setNetworkError(false);
       // Register user and get token and user data
       const { token, user } = await register({
-        email: formData.email,
+        username: formData.email,
         password: formData.password
       });
       
-      // Log in the user after successful registration
-      authLogin(token, user);
-      
       // Redirect to dashboard
-      navigate('/dashboard');
+      navigate('/login');
     } catch (error) {
       if (!navigator.onLine) {
         setNetworkError(true);

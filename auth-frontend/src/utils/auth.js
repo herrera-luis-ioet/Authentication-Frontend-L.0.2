@@ -25,19 +25,12 @@ export const getToken = () => {
  * Stores the user data in localStorage
  * @param {Object} user - The user object to store
  */
-export const setUser = (user) => {
-  localStorage.setItem(USER_KEY, JSON.stringify(user));
-};
 
 // PUBLIC_INTERFACE
 /**
  * Retrieves the user data from localStorage
  * @returns {Object|null} The stored user object or null if not found
  */
-export const getUser = () => {
-  const user = localStorage.getItem(USER_KEY);
-  return user ? JSON.parse(user) : null;
-};
 
 // PUBLIC_INTERFACE
 /**
@@ -55,7 +48,6 @@ export const isAuthenticated = () => {
  */
 export const logout = () => {
   localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(USER_KEY);
 };
 
 /**
@@ -80,7 +72,6 @@ const isTokenExpired = (token) => {
 export const getAuthState = () => {
   return {
     isAuthenticated: isAuthenticated(),
-    user: getUser(),
     token: getToken()
   };
 };

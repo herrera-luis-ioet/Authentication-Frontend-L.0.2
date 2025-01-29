@@ -53,7 +53,6 @@ export const AuthProvider = ({ children }) => {
     try {
       setIsLoading(true);
       setToken(token);
-      setUser(user);
       setAuthState(getAuthState());
     } catch (error) {
       console.error('Error during login:', error);

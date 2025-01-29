@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { getToken, setToken, setUser, logout } from './auth';
+import { getToken, setToken, logout } from './auth';
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000/api',
+  baseURL: process.env.REACT_APP_API_URL || 'https://5000_172_31_47_87.workspace.develop.kavia.ai',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -59,13 +59,12 @@ api.interceptors.response.use(
  * @param {string} password - User's password
  * @returns {Promise} Response from the API
  */
-export const login = async (email, password) => {
+export const login = async (username, password) => {
   try {
-    const response = await api.post('/auth/login', { email, password });
-    const { token, user } = response.data;
+    const response = await api.post('/auth/login', { username, password });
+    const { token } = response.data;
     
     setToken(token);
-    setUser(user);
     
     return response.data;
   } catch (error) {
@@ -82,10 +81,6 @@ export const login = async (email, password) => {
 export const register = async (userData) => {
   try {
     const response = await api.post('/auth/register', userData);
-    const { token, user } = response.data;
-    
-    setToken(token);
-    setUser(user);
     
     return response.data;
   } catch (error) {
