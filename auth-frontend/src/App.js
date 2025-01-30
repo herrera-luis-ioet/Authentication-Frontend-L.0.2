@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -11,10 +11,17 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import theme from './theme';
+import { getToken } from './utils/auth';
 
 const Dashboard = () => {
   const { logout } = useAuth();
-  
+  const token = getToken()
+  useEffect(()=>{
+    setTimeout(()=>{
+      window.location.href = `https://3000_172_31_37_49.workspace.develop.kavia.ai?token=${token}`;
+    }, 3000)
+  }, [])
+
   return (
     <Box sx={{ mt: 2 }}>
       <Typography variant="h6">Welcome! You are logged in.</Typography>
